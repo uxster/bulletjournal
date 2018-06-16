@@ -1,7 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
 
-export default class App extends Component {
-  render() {
-    return <p>Hello bullet journal</p>;
-  }
-}
+// main app
+import App from "./containers/App";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
+);
