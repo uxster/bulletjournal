@@ -1,15 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from "react";
+import InputPreview from "../components/InputPreview";
+import { connect } from "react-redux";
 
-// main app
-import App from "./containers/App";
+class App extends Component {
+  render() {
+    const { message } = this.props.messageReducer;
+    return <InputPreview value={message} />;
+  }
+}
 
-import { Provider } from "react-redux";
-import store from "./store";
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("app")
-);
+export default connect(state => state)(App);
