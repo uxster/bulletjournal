@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
+import "./styles/styles.less";
+
 import store from "./store";
 
 // main routes

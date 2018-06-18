@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Dropdown, List, Icon } from "semantic-ui-react";
+import { Input, Dropdown, List, Icon, Button } from "semantic-ui-react";
 
 /**
  * Returns an input field for adding to do's to the list.
@@ -32,13 +32,17 @@ export default class InputField extends React.Component {
             />
           }
           labelPosition="left"
-          placeholder="Find domain"
+          placeholder="What do you have to do today?"
           value={this.props.newInput.text}
           onChange={e => this.props.updateText(e.target.value)}
         />
-        <button onClick={() => this.props.addTodo()}>
-          <Icon name="add" /> add
-        </button>
+        <Button
+          className="add-button"
+          onClick={() => this.props.addTodo()}
+          size="large"
+        >
+          <Icon name="add" /> Add
+        </Button>
       </div>
     );
   }

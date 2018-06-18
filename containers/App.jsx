@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setMessage } from "../actions/message";
+import { Label, Icon } from "semantic-ui-react";
+import { getIconName } from "../components/helpers.js";
 
 // Components
 import InputField from "../components/InputField.jsx";
-// import TodoListContainer from "../components/TodoListContainer.jsx";
 import TodoListItem from "../components/TodoListItem.jsx";
 
 /**
@@ -70,7 +71,15 @@ class App extends Component {
   };
 
   createList = item => {
-    return <li key={item.key}>{item.text}</li>;
+    return (
+      <li key={item.key}>
+        <Label size="large" className="label">
+          <Icon name={getIconName(item.type)} />
+          {item.text}
+          <Icon name="delete" color="red" />
+        </Label>
+      </li>
+    );
   };
 
   // removeTodo = (i) => {
@@ -84,32 +93,35 @@ class App extends Component {
   //   }
   // };
 
-  // _onChange = value => {
-  //   this.props.dispatch(setMessage(value));
-  // };
-
   render() {
     const { message } = this.props.messageReducer;
     const todos = this.state.todos;
     const listItems = todos.map(this.createList);
 
     return (
-      <div>
-        <InputField
-          newInput={this.state.newInput}
-          updateText={this.updateText}
-          updateType={this.updateType}
-          addTodo={this.addTodo}
-        />
+      <div className="content">
+        <div className="input-field">
+          <InputField
+            newInput={this.state.newInput}
+            updateText={this.updateText}
+            updateType={this.updateType}
+            addTodo={this.addTodo}
+          />
+        </div>
         <div className="list-container">
           <ul className="list">{listItems}</ul>
         </div>
-        {/* <Link to="/info">
-          <button>Info</button>
-        </Link> */}
       </div>
     );
   }
 }
 
 export default connect(state => state)(App);
+
+//   <Link to="/info">
+//      <button>Info</button>
+//   </Link>
+
+// _onChange = value => {
+//   this.props.dispatch(setMessage(value));
+// };
